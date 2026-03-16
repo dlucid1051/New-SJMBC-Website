@@ -1,0 +1,231 @@
+import { useEffect, useRef, useState } from 'react';
+import { Play, Youtube, ExternalLink, Radio } from 'lucide-react';
+
+const WatchLive = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const recentSermons = [
+    {
+      title: 'Sunday Morning Worship Experience',
+      speaker: 'Rev. Judge Green IV, Pastor-Elect',
+      duration: '2:10:24',
+      date: 'Recent',
+    },
+    {
+      title: 'Sunday Morning Worship Experience',
+      speaker: 'Rev. Judge Green IV, Pastor-Elect',
+      duration: '1:39:00',
+      date: 'Recent',
+    },
+    {
+      title: 'Sunday Morning Worship Experience',
+      speaker: 'Naomi Shepherd, Guest Minister',
+      duration: '1:31:06',
+      date: 'Recent',
+    },
+  ];
+
+  return (
+    <section 
+      id="watch" 
+      ref={sectionRef}
+      className="relative py-24 lg:py-32 bg-navy overflow-hidden"
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 w-full section-padding">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <div 
+            className={`flex items-center justify-center gap-3 mb-6 transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="w-12 h-[2px] bg-primary" />
+            <span className="font-body text-sm font-semibold text-primary uppercase tracking-wider">Online Worship</span>
+            <div className="w-12 h-[2px] bg-primary" />
+          </div>
+
+          <h2 
+            className={`heading-lg text-white mb-4 transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '100ms' }}
+          >
+            Watch Live
+          </h2>
+
+          <p 
+            className={`body-md text-white/70 max-w-2xl mx-auto transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
+            Join us every Sunday at 10:45 AM CST for our live worship service. 
+            Can't make it? Watch our archived sermons anytime.
+          </p>
+        </div>
+
+        {/* Main Video Player */}
+        <div 
+          className={`max-w-5xl mx-auto mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+          style={{ transitionDelay: '300ms' }}
+        >
+          <div 
+            className="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            {/* Video Thumbnail */}
+            <div className="relative aspect-video">
+              <img 
+                src="/video-thumbnail.jpg" 
+                alt="Live worship service" 
+                className={`w-full h-full object-cover transition-transform duration-700 ${
+                  isHovering ? 'scale-105' : 'scale-100'
+                }`}
+              />
+              
+              {/* Overlay */}
+              <div className={`absolute inset-0 bg-navy/40 transition-opacity duration-500 ${
+                isHovering ? 'opacity-60' : 'opacity-40'
+              }`} />
+
+              {/* Live Badge */}
+              <div className="absolute top-6 left-6 flex items-center gap-2 px-4 py-2 bg-red-500 rounded-full">
+                <Radio className="w-4 h-4 text-white animate-pulse" />
+                <span className="font-body text-sm font-semibold text-white">LIVE</span>
+              </div>
+
+              {/* Play Button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <a 
+                  href="https://www.youtube.com/channel/UCXV4-JaH-ilFqo1zgFhl87Q"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`relative w-24 h-24 rounded-full bg-white flex items-center justify-center transition-all duration-500 ${
+                    isHovering ? 'scale-110 shadow-2xl' : 'scale-100'
+                  }`}
+                >
+                  <Play className="w-10 h-10 text-primary ml-1" fill="currentColor" />
+                  
+                  {/* Pulsing Rings */}
+                  <div className={`absolute inset-0 rounded-full border-2 border-white/50 animate-ping ${
+                    isHovering ? 'opacity-100' : 'opacity-0'
+                  }`} />
+                  <div className={`absolute -inset-4 rounded-full border border-white/30 animate-pulse ${
+                    isHovering ? 'opacity-100' : 'opacity-0'
+                  }`} />
+                </a>
+              </div>
+
+              {/* Service Info */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-navy to-transparent">
+                <p className="font-body text-white/70 text-sm mb-1">Sundays at 10:45 AM CST</p>
+                <h3 className="font-display font-semibold text-white text-xl">
+                  Sunday Morning Worship Experience
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Sermons */}
+        <div 
+          className={`max-w-5xl mx-auto transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transitionDelay: '500ms' }}
+        >
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="font-display font-semibold text-white text-xl">Recent Sermons</h3>
+            <a 
+              href="https://www.youtube.com/channel/UCXV4-JaH-ilFqo1zgFhl87Q"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary font-body font-medium hover:underline"
+            >
+              View All
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {recentSermons.map((sermon, index) => (
+              <a
+                key={index}
+                href="https://www.youtube.com/channel/UCXV4-JaH-ilFqo1zgFhl87Q"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                    <Youtube className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-body font-medium text-white text-sm mb-1 line-clamp-2 group-hover:text-primary transition-colors">
+                      {sermon.title}
+                    </h4>
+                    <p className="font-body text-white/60 text-xs mb-1">{sermon.speaker}</p>
+                    <div className="flex items-center gap-2">
+                      <span className="font-body text-white/40 text-xs">{sermon.duration}</span>
+                      <span className="text-white/20">•</span>
+                      <span className="font-body text-white/40 text-xs">{sermon.date}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Subscribe CTA */}
+        <div 
+          className={`text-center mt-12 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transitionDelay: '700ms' }}
+        >
+          <a 
+            href="https://www.youtube.com/channel/UCXV4-JaH-ilFqo1zgFhl87Q?sub_confirmation=1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-red-600 text-white font-body font-semibold rounded-lg hover:bg-red-700 transition-colors"
+          >
+            <Youtube className="w-6 h-6" />
+            Subscribe on YouTube
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WatchLive;
