@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Play, Clock, MapPin, ChevronRight } from 'lucide-react';
+import { FaPrayingHands } from 'react-icons/fa';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -48,8 +49,8 @@ const Hero = () => {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 parallax" data-speed="0.3">
         <img 
-          src="/hero-bg.jpg" 
-          alt="Church congregation" 
+          src="./hero-bg-sjmbc.jpg" 
+          alt="Church facility" 
           className="w-full h-full object-cover scale-110"
         />
       </div>
@@ -84,8 +85,8 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: '400ms' }}
           >
-            <span className="block">Christ Centered</span>
-            <span className="block text-primary-light">|</span>
+            <span className="block">Christ Centered,</span>
+            {/* <span className="block text-primary-light">|</span> */}
             <span className="block">Community Focused</span>
           </h1>
 
@@ -120,6 +121,13 @@ const Hero = () => {
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Live
+            </button>
+            <button 
+              onClick={() => scrollToSection('#contact')}
+              className="btn-outline group"
+            >
+              <FaPrayingHands className="w-5 h-5 mr-2" />
+              Request Prayer
             </button>
           </div>
 

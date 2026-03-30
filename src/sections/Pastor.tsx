@@ -66,7 +66,7 @@ const Pastor = () => {
               }`}
               style={{ transitionDelay: '200ms' }}
             >
-              Rev. Judge Green IV
+              Pastor Judge Green, IV
             </h3>
 
             {/* Bio */}
@@ -115,7 +115,7 @@ const Pastor = () => {
               style={{ transitionDelay: '500ms' }}
             >
               <a 
-                href="mailto:pastor@stjamesbc.org"
+                href="mailto:sjmbc@stjamesbc.org"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
               >
                 <Mail className="w-5 h-5" />
@@ -141,8 +141,8 @@ const Pastor = () => {
               {/* Main Image */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/pastor-image.jpg" 
-                  alt="Pastor Judge Green IV" 
+                  src="/pastor-image-IV-90.png" 
+                  alt="Pastor Judge Green, IV" 
                   className="w-full h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />

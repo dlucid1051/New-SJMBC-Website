@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import logoWhite from '../assets/logo-white.png';
+import logoColor from '../assets/logo-color.png';
 
-const Navigation = () => {
+  const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+    const threshold = window.innerHeight * 0.5; 
+    setIsScrolled(window.scrollY > threshold);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -29,7 +32,7 @@ const Navigation = () => {
       name: 'Ministries', 
       href: '#ministries',
       dropdown: [
-        { name: 'Ignite Student Ministry', href: '#ministries' },
+        { name: 'Youth Ministry', href: '#ministries' },
         { name: 'Music & Arts', href: '#ministries' },
         { name: 'Spiritual Formation', href: '#ministries' },
         { name: 'Community Care', href: '#ministries' },
@@ -59,23 +62,44 @@ const Navigation = () => {
       >
         <div className="w-full section-padding">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a 
-              href="#home" 
-              onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
-              className="flex items-center gap-3 group"
-            >
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                isScrolled ? 'bg-primary' : 'bg-white/20 backdrop-blur-sm'
-              }`}>
-                <span className={`font-display font-bold text-lg ${isScrolled ? 'text-white' : 'text-white'}`}>SJ</span>
-              </div>
-              <div className={`hidden sm:block transition-all duration-300 ${
-                isScrolled ? 'opacity-100' : 'opacity-0'
-              }`}>
-                <span className="font-display font-semibold text-navy text-sm">St. James MBC</span>
-              </div>
-            </a>
+
+
+{/* Logo Anchor */}
+<a 
+  href="#home" 
+  onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
+  className="flex items-center gap-3 group"
+>
+  {/* logo container */}
+<div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 relative ${
+  isScrolled ? 'bg-white shadow-sm' : 'bg-white/10 backdrop-blur-sm'
+}`}>
+  {/* Color Logo (Visible when scrolled) */}
+  <img 
+    src={logoColor} 
+    alt="St. James Logo" 
+    className={`absolute inset-0 w-full h-full object-contain p-1.5 transition-opacity duration-500 ${
+      isScrolled ? 'opacity-100' : 'opacity-0'
+    }`}
+  />
+  
+  {/* White Logo (Visible at top) */}
+  <img 
+    src={logoWhite} 
+    alt="St. James Logo" 
+    className={`absolute inset-0 w-full h-full object-contain p-1.5 transition-opacity duration-500 ${
+      isScrolled ? 'opacity-0' : 'opacity-100'
+    }`}
+  />
+</div>
+
+  {/* This text part also remains part of the Home link */}
+  <div className={`hidden sm:block transition-all duration-300 ${
+    isScrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
+  }`}>
+    <span className="font-display font-semibold text-navy text-sm">St. James MBC</span>
+  </div>
+</a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1">

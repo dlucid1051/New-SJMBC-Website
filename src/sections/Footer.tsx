@@ -1,6 +1,8 @@
-import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Instagram, Youtube, Heart, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Facebook, Youtube, Heart, ChevronRight } from 'lucide-react';
+import { FaXTwitter, FaTiktok } from 'react-icons/fa6';
+import logoColor from '../assets/logo-color.png';
 
-const Footer = () => {
+  const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
@@ -12,7 +14,7 @@ const Footer = () => {
   ];
 
   const ministries = [
-    { name: 'Ignite Student Ministry', href: '#ministries' },
+    { name: 'Youth Ministry', href: '#ministries' },
     { name: 'Music & Arts', href: '#ministries' },
     { name: 'Spiritual Formation', href: '#ministries' },
     { name: 'Community Care', href: '#ministries' },
@@ -21,8 +23,9 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/saintjamesmbcfs', label: 'Facebook' },
-    { icon: Twitter, href: 'https://twitter.com/SJMBC_FortSmith', label: 'Twitter' },
-    { icon: Instagram, href: 'https://www.instagram.com/sjmbc_fs', label: 'Instagram' },
+    { icon: FaXTwitter, href: 'https://twitter.com/SJMBC_FortSmith', label: 'X formorly Twitter' },
+//    { icon: Instagram, href: 'https://www.instagram.com/sjmbc_fs', label: 'Instagram' },
+    { icon: FaTiktok, href: 'https://www.tiktok.com/@sjmbcfs', label: 'TikTok' },
     { icon: Youtube, href: 'https://www.youtube.com/channel/UCXV4-JaH-ilFqo1zgFhl87Q', label: 'YouTube' },
   ];
 
@@ -49,14 +52,20 @@ const Footer = () => {
             {/* Church Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                  <span className="font-display font-bold text-white text-xl">SJ</span>
+                {/* Circle Container */}
+                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm">
+                  <img 
+                    src={logoColor} 
+                    alt="St. James Logo" 
+                    className="w-full h-full object-contain p-1.5" 
+                  />
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-white">St. James MBC</h3>
                   <p className="font-body text-xs text-white/60">Fort Smith, AR</p>
                 </div>
               </div>
+              {/* ... rest of your code */}
 
               <p className="font-body text-white/70 text-sm mb-6">
                 A Christ-centered, community-focused church dedicated to sharing the love of Jesus Christ since 1893.
@@ -105,7 +114,7 @@ const Footer = () => {
                 {ministries.map((ministry, index) => (
                   <li key={index}>
                     <a
-                      href={ministry.href}
+                      href={ministry.href} 
                       onClick={(e) => { e.preventDefault(); scrollToSection(ministry.href); }}
                       className="inline-flex items-center gap-2 font-body text-sm text-white/70 hover:text-primary transition-colors group"
                     >

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Flame, Music, BookOpen, Heart, Globe } from 'lucide-react';
+import { ArrowRight, GraduationCap, Music, BookOpen, Heart, Globe } from 'lucide-react';
 
 const Ministries = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -25,10 +25,10 @@ const Ministries = () => {
 
   const ministries = [
     {
-      title: 'Ignite Student Ministry',
+      title: 'Youth Ministry',
       description: 'Empowering youth to discover their purpose and grow in faith through dynamic programs and mentorship.',
       image: '/ministry-1.jpg',
-      icon: Flame,
+      icon: GraduationCap,
       color: 'from-orange-500 to-red-500',
     },
     {

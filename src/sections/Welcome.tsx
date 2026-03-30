@@ -48,7 +48,7 @@ const Welcome = () => {
       className="relative py-24 lg:py-32 bg-white overflow-hidden"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary" />
         <div className="absolute bottom-20 left-20 w-48 h-48 rounded-full bg-primary" />
       </div>
@@ -116,7 +116,7 @@ const Welcome = () => {
               style={{ transitionDelay: '300ms' }}
             >
               Welcome to
-              <span className="block text-primary">St. James</span>
+              <span className="block text-primary">St. James MBC</span>
             </h2>
 
             {/* Script Accent */}
@@ -168,16 +168,12 @@ const Welcome = () => {
 
             {/* CTA */}
             <a 
-              href="#service-times"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#service-times')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              href="https://www.stjamesbc.org/church-history" target='_blank'
               className={`inline-flex items-center gap-2 text-primary font-body font-semibold hover:gap-4 transition-all duration-300 ${
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
               style={{ transitionDelay: '700ms' }}
-            >
+             >
               Learn Our Story
               <ArrowRight className="w-5 h-5" />
             </a>

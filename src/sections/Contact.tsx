@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+//import { MapPin, Phone, Mail, Clock, Send, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, Facebook, Youtube } from 'lucide-react';
+import { FaXTwitter, FaTiktok } from "react-icons/fa6";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -80,8 +82,9 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/saintjamesmbcfs', label: 'Facebook' },
-    { icon: Twitter, href: 'https://twitter.com/SJMBC_FortSmith', label: 'Twitter' },
-    { icon: Instagram, href: 'https://www.instagram.com/sjmbc_fs', label: 'Instagram' },
+    { icon: FaXTwitter, href: 'https://twitter.com/SJMBC_FortSmith', label: 'X formorly Twitter' },
+  //  { icon: Instagram, href: 'https://www.instagram.com/sjmbc_fs', label: 'Instagram' },
+    { icon: FaTiktok, href: 'https://www.tiktok.com/@sjmbcfs', label: 'TikTok' },
     { icon: Youtube, href: 'https://www.youtube.com/channel/UCXV4-JaH-ilFqo1zgFhl87Q', label: 'YouTube' },
   ];
 
@@ -172,6 +175,35 @@ const Contact = () => {
                     <social.icon className="w-5 h-5" />
                   </a>
                 ))}
+              </div>
+            </div>
+
+            {/* Donation */}
+            <div className="mt-8 pt-8 border-t border-gray-100">
+              <h3 className="font-display font-semibold text-navy mb-4">Donate</h3>
+              <div className="flex gap-3">
+              <button 
+                onClick={() => window.open('https://www.givelify.com/donate/st-james-missionary-baptist-church-fort-smith-ar-2j7wy5Mzc2Ng==/donation/amount', '_blank')}
+                className="w-24 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <img 
+                  src="./Givlify-P.png" 
+                  alt="Givlify" 
+                  className="w-6 h-6 mr-2 object-contain" 
+                />
+                Givlify
+              </button>
+              <button 
+                onClick={() => window.open('https://www.paypal.com/donate?token=IZvxDneDKqfT8TYr4--ZluNYjSIa9lVPg93pTSJ_jgA95vg_64h64PElvl75I-OLnexJEg2DPugndsns', '_blank')}
+                className="w-24 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <img 
+                  src="./PayPal-P.png" 
+                  alt="PayPal" 
+                  className="w-6 h-6 mr-2 object-contain" 
+                />
+                PayPal
+              </button>
               </div>
             </div>
           </div>
